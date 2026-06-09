@@ -1,0 +1,11 @@
+target/
+test-output/
+*.class
+*.log
+.project
+.classpath
+.settings/
+
+# Ignore generated screenshots
+screenshots/*.png
+screenshots/*.jpg
