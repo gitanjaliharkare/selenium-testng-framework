@@ -8,4 +8,4 @@ test-output/
 
 # Ignore generated screenshots
 screenshots/*.png
-screenshots/*.jpg
+screenshots/*.jpgsrc/test/java/tests/LoginDataTest.java
