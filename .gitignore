@@ -10,3 +10,4 @@ test-output/
 screenshots/*.png
 screenshots/*.jpgsrc/test/java/tests/LoginDataTest.java
 src/test/java/tests/LoginDataTest.java
+src/test/java/pages/TestPage.java

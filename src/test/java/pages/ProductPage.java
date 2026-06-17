@@ -3,6 +3,7 @@ package pages;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -17,14 +18,15 @@ import org.testng.Assert;
 
 public class ProductPage {
 
-	
 	WebDriver driver;
 	WebDriverWait wait;
 	private int numberOfProducts;
 	By btnMenu = By.id("react-burger-menu-btn");
 	By btnLogout = By.id("logout_sidebar_link");
 	By titleProduct = By.cssSelector("span[data-test='title']");
+
 	private List<Map.Entry<String, String>> products = new ArrayList<>();
+	protected List<String> productsInCart;
 
 	public ProductPage(WebDriver driver) {
 		this.driver = driver;
@@ -36,17 +38,17 @@ public class ProductPage {
 		products.add(Map.entry("Sauce Labs Onesie", "sauce-labs-onesie"));
 		products.add(Map.entry("Test.allTheThings() T-Shirt (Red)", "test.allthethings()-t-shirt-(red)"));
 		numberOfProducts = ThreadLocalRandom.current().nextInt(1, 7);
+		productsInCart = new ArrayList<String>();
 	}
 
-	public List<Entry<String,String>> getProducts()
-	{
-	    return products;
+	public List<Entry<String, String>> getProducts() {
+		return products;
 	}
-	
-	public int getNumberOfProducts()
-	{
+
+	public int getNumberOfProducts() {
 		return numberOfProducts;
 	}
+
 	public boolean checkLoginSuccess() {
 		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(titleProduct));
 		if (title != null) {
@@ -56,13 +58,20 @@ public class ProductPage {
 		}
 
 	}
+	public List<String> getSelectedProductList()
+	{
+		return productsInCart;
+	}
 
 	public void addProduct(Entry<String, String> element) {
 		String addElement = "add-to-cart-" + element.getValue();
 
-		driver.findElement(By.id(addElement)).click();
-		System.out.println("Product " + element.getKey() + "added");
+		WebElement selectProduct = driver.findElement(By.id(addElement));
+		selectProduct.click();
 		
+		productsInCart.add(element.getKey());
+		System.out.println("Product " + element.getKey() + "added");
+
 	}
 
 	public void removeProduct(Entry<String, String> element) {
@@ -71,7 +80,7 @@ public class ProductPage {
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id(removeElement)));
 		driver.findElement(By.id(removeElement)).click();
 		System.out.println("Product " + element.getKey() + "Removed");
-		
+
 	}
 
 	public int getCartBadgeCount() {
@@ -84,7 +93,6 @@ public class ProductPage {
 		}
 
 	}
-
 
 	public void logout() {
 		driver.findElement(btnMenu).click();

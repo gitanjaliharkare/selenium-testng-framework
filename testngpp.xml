@@ -6,7 +6,7 @@
 		<parameter name="username" value="standard_user"/>
 		<parameter name="password" value="secret_sauce"/>
 		<classes>
-			<class name="tests.ProductTest" />
+			<class name="tests.CartTest" />
 		</classes>
 	</test><!-- Test -->
 </suite> <!-- Suite -->
