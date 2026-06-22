@@ -10,11 +10,11 @@ public class ScreenshotListener implements ITestListener {
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		Object testClass= result.getInstance();
-		WebDriver driver =((BaseClass)testClass).driver;
-		ScreenshotUtility su= new ScreenshotUtility(driver,result.getName());
+		Object testClass = result.getInstance();
+		WebDriver driver = ((BaseClass) testClass).driver;
+		ScreenshotUtility su = new ScreenshotUtility(driver, result.getName());
 		su.captureScreenshot();
-		
+
 	}
 
 }

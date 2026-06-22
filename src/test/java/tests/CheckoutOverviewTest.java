@@ -18,22 +18,24 @@ public class CheckoutOverviewTest extends BaseClass {
 	CartPage cp;
 	CheckoutPage cop;
 	CheckoutOverviewPage coop;
+
 	@BeforeTest
 	@Parameters("browser")
-	public void launchbrowser(@Optional String browserName)
-	{
-		super.setup(browserName);	
+	public void launchbrowser(@Optional String browserName) {
+		super.setup(browserName);
 	}
+
 	@Test(priority = 0)
-	@Parameters({"username","password"})
-	public void Login(String userName,String password) {
-		lp=new LoginPage(driver);
-		lp.login(userName, password);		
+	@Parameters({ "username", "password" })
+	public void Login(String userName, String password) {
+		lp = new LoginPage(driver);
+		lp.login(userName, password);
 	}
+
 	@Test(priority = 1)
 	public void testAddProductsToCart() {
 		pp = new ProductPage(driver);
-		
+
 		System.out.println("Adding all products to cart");
 		for (int i = 0; i < pp.getProducts().size(); i++) {
 			Map.Entry<String, String> element = pp.getProducts().get(i);
@@ -42,46 +44,46 @@ public class CheckoutOverviewTest extends BaseClass {
 
 		}
 	}
+
 	@Test(priority = 3)
 	public void gotoCartPage() {
-		cp=new CartPage(driver);
-	  Assert.assertTrue(cp.onCartPage());	 
-		
+		cp = new CartPage(driver);
+		Assert.assertTrue(cp.onCartPage());
+
 	}
+
 	@Test(priority = 4)
 	public void gotoCheckoutPage() {
-		
-		cp=new CartPage(driver);
+
+		cp = new CartPage(driver);
 		cp.gotoCheckout();
 		cop = new CheckoutPage(driver);
 		Assert.assertTrue(cop.onCheckoutPage());
 	}
-	
+
 	@Test(priority = 5)
-	@Parameters({"firstname","lastname","pincode"})
-	public void testContinueWithValidInfo(String firstName,String LastName,String postalCode)
-	{
-		
+	@Parameters({ "firstname", "lastname", "pincode" })
+	public void testContinueWithValidInfo(String firstName, String LastName, String postalCode) {
+
 		cop.continueWithUserInfo(firstName, LastName, postalCode);
-		coop= new CheckoutOverviewPage(driver);
+		coop = new CheckoutOverviewPage(driver);
 		Assert.assertTrue(coop.onCheckoutOverviewPage());
 		System.out.println("Successfully On Checkout Overview page");
-		
-		
+
 	}
+
 	@Test(priority = 6)
-	public void testProductsOnCheckoutOverviewPage()
-	{
+	public void testProductsOnCheckoutOverviewPage() {
 		Assert.assertTrue(coop.presenceOfSelectedProductsOnOverview(pp.getSelectedProductList()));
-	   	
+
 	}
+
 	@Test(priority = 7)
-	public void testBillingTotal()
-	{
-		Assert.assertEquals(coop.calculatedBill(), coop.visibleBill(),0.01,"Visible bill does not matches calculated bill");
+	public void testBillingTotal() {
+		Assert.assertEquals(coop.calculatedBill(), coop.visibleBill(), 0.01,
+				"Visible bill does not matches calculated bill");
 	}
-	
-	
+
 	@AfterTest
 	public void quitBrowser() {
 		teardown();

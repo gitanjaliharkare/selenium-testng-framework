@@ -2,7 +2,13 @@
 
 ## Project Overview
 
-This project is a Selenium automation framework developed using Java and TestNG. The framework follows the Page Object Model (POM) design pattern and supports data-driven testing using Excel files. It demonstrates the implementation of reusable components, test utilities, listeners, and configuration management commonly used in automation testing projects.
+This project is an end-to-end test automation framework developed using Selenium WebDriver, Java, TestNG, Maven, and Page Object Model (POM).
+
+The framework automates the complete purchase flow on the SauceDemo application, including product selection, cart validation, checkout process, order completion, and logout functionality.
+
+The project was created to practice real-world automation framework design and demonstrate Selenium automation skills.
+
+---
 
 ## Technologies Used
 
@@ -10,50 +16,162 @@ This project is a Selenium automation framework developed using Java and TestNG.
 * Selenium WebDriver
 * TestNG
 * Maven
-* Apache POI
-* Git
-* GitHub
+* Git & GitHub
 * Page Object Model (POM)
+* Apache POI (Excel Utility)
+
+---
 
 ## Framework Features
 
-* Page Object Model (POM) implementation
-* Data-driven testing using Excel
-* Screenshot capture on test failure
-* TestNG Listeners
-* Configuration management using properties files
-* Reusable utility classes
-* Maven project structure
-*Cross-browser execution using TestNG parameters (Firefox and Edge)
-* Version control using Git and GitHub
+### Login Functionality
+
+* Login using valid credentials
+* Login validation
+
+### Product Page
+
+* Add products to cart
+* Remove products from cart
+* Cart badge verification
+* Dynamic product handling using reusable methods
+
+### Cart Page
+
+* Verify cart page navigation
+* Verify selected products are displayed correctly
+* Compare expected products with actual products
+
+### Checkout Page
+
+* Enter customer information
+* Continue checkout process
+* Validate successful navigation
+
+### Checkout Overview Page
+
+* Verify selected products
+* Verify product count
+* Validate item total calculation
+* Validate tax and final total
+
+### Checkout Complete Page
+
+* Complete order
+* Verify successful order placement
+* Logout verification
+
+### Additional Features
+
+* Regression Test Suite
+* Exploratory Test Suite
+* Screenshot Utility
+* Screenshot Listener
+* Config Reader Utility
+* Excel Utility
+
+---
 
 ## Project Structure
 
-src/test/java
+src
 
-* base
-* configs
-* listeners
-* pages
-* tests
-* utilities
+├── base
 
-testData/
-testng.xml
-pom.xml
+│   └── BaseClass.java
 
-## How to Execute Tests
+├── pages
 
-1. Import the project into Eclipse/MyEclipse.
-2. Update Maven dependencies if required.
-3. Run the `testng.xml` file as a TestNG Suite.
+│   ├── LoginPage.java
 
-## Future Enhancements
+│   ├── ProductPage.java
 
-* Cucumber integration
-* CI/CD integration using Jenkins
-* Generative AI-assisted testing practices
+│   ├── CartPage.java
+
+│   ├── CheckoutPage.java
+
+│   ├── CheckoutOverviewPage.java
+
+│   └── CheckoutCompletePage.java
+
+├── tests
+
+│   ├── LoginTest.java
+
+│   ├── ProductTest.java
+
+│   ├── ExploratoryProductTest.java
+
+│   ├── CartTest.java
+
+│   ├── CheckoutTest.java
+
+│   ├── CheckoutOverviewTest.java
+
+│   └── CheckoutCompleteTest.java
+
+├── utilities
+
+│   ├── ConfigReader.java
+
+│   ├── ExcelUtility.java
+
+│   ├── ScreenshotUtility.java
+
+│   └── ScreenshotListener.java
+
+---
+
+## Test Scenarios Covered
+
+### Regression Tests
+
+* Login
+* Add all products
+* Verify cart badge
+* Verify cart contents
+* Checkout flow
+* Verify totals
+* Complete order
+* Logout
+
+### Exploratory Tests
+
+* Random product selection
+* Random product removal
+* Cart validation for selected products
+
+---
+
+## How To Run
+
+1. Clone the repository
+
+git clone <repository-url>
+
+2. Open project in Eclipse / IntelliJ
+
+3. Update configuration if required
+
+4. Run testng.xml
+
+or
+
+Run individual TestNG test classes.
+
+---
+
+## Design Patterns Used
+
+* Page Object Model (POM)
+* Reusable Utility Classes
+* TestNG Framework Structure
+* Data-Driven Support using Excel
+
+---
 
 ## Author
 
 Gitanjali Harkare
+
+Automation Testing Framework created as part of Selenium WebDriver with Java learning and interview preparation.

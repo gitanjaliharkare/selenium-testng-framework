@@ -13,7 +13,7 @@ import base.BaseClass;
 import pages.LoginPage;
 import pages.ProductPage;
 
-public class ExploratoryProductTest extends BaseClass{
+public class ExploratoryProductTest extends BaseClass {
 	LoginPage lp;
 	ProductPage pp;
 
@@ -46,7 +46,7 @@ public class ExploratoryProductTest extends BaseClass{
 
 	@Test(priority = 2)
 	public void testDeleteSelectedFromCart() {
-		
+
 		System.out.println("Removing " + pp.getNumberOfProducts() + " products from cart");
 		for (int i = 0; i < pp.getNumberOfProducts(); i++) {
 			Map.Entry<String, String> element = pp.getProducts().get(i);
@@ -61,6 +61,5 @@ public class ExploratoryProductTest extends BaseClass{
 	public void quitBrowser() {
 		teardown();
 	}
-
 
 }

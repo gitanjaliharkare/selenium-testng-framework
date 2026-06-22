@@ -34,7 +34,7 @@ public class ProductTest extends BaseClass {
 	@Test(priority = 1)
 	public void testAddProductsToCart() {
 		pp = new ProductPage(driver);
-		
+
 		System.out.println("Adding all products to cart");
 		for (int i = 0; i < pp.getProducts().size(); i++) {
 			Map.Entry<String, String> element = pp.getProducts().get(i);
@@ -47,7 +47,7 @@ public class ProductTest extends BaseClass {
 
 	@Test(priority = 2)
 	public void testRemoveAllProductsFromCart() {
-	
+
 		System.out.println("Removing all products from cart");
 		for (int i = 0; i < pp.getProducts().size(); i++) {
 			Map.Entry<String, String> element = pp.getProducts().get(i);

@@ -2,19 +2,15 @@ package pages;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 public class ProductPage {
 
@@ -50,16 +46,12 @@ public class ProductPage {
 	}
 
 	public boolean testOnHomePage() {
-		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(titleProduct));
-		if (title != null) {
-			return true;
-		} else {
-			return false;
-		}
+
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(titleProduct)) != null;
 
 	}
-	public List<String> getSelectedProductList()
-	{
+
+	public List<String> getSelectedProductList() {
 		return productsInCart;
 	}
 
@@ -68,7 +60,7 @@ public class ProductPage {
 
 		WebElement selectProduct = driver.findElement(By.id(addElement));
 		selectProduct.click();
-		
+
 		productsInCart.add(element.getKey());
 		System.out.println("Product " + element.getKey() + "added");
 

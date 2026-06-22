@@ -13,6 +13,7 @@ import base.BaseClass;
 import listeners.ScreenshotListener;
 import pages.*;
 import utilities.*;
+
 @Listeners(ScreenshotListener.class)
 public class LoginTest extends BaseClass {
 	BaseClass bc;
@@ -22,9 +23,9 @@ public class LoginTest extends BaseClass {
 	@BeforeClass
 	@Parameters("browser")
 	public void launchBrowser(@Optional("") String browser) {
-	
+
 		setup(browser);
-		
+
 	}
 
 	@DataProvider(name = "LoginData")
@@ -34,7 +35,7 @@ public class LoginTest extends BaseClass {
 		return eu.getExcelData(cr.getConfigValue("path"), cr.getConfigValue("sheetname"));
 
 	}
-	
+
 	@Test(dataProvider = "LoginData")
 	public void loginTests(String username, String password, String expectedResult) {
 		lp = new LoginPage(driver);
@@ -46,11 +47,10 @@ public class LoginTest extends BaseClass {
 			pp.logout();
 		} else if (expectedResult.equalsIgnoreCase("Failure")) {
 			Assert.assertTrue(lp.checkErrorMessage());
-		
 
 		}
 	}
-  
+
 	@AfterClass
 	public void quitBrowser() {
 		teardown();
