@@ -1,4 +1,5 @@
 package tests;
+
 import java.util.Map;
 
 import org.testng.Assert;
@@ -9,14 +10,20 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import base.BaseClass;
-import pages.*;
+import pages.CartPage;
+import pages.CheckoutCompletePage;
+import pages.CheckoutOverviewPage;
+import pages.CheckoutPage;
+import pages.LoginPage;
+import pages.ProductPage;
 
-public class CartTest extends BaseClass {
+public class CheckoutCompleteTest extends BaseClass{
 	LoginPage lp;
 	ProductPage pp;
 	CartPage cp;
 	CheckoutPage cop;
 	CheckoutOverviewPage coop;
+	CheckoutCompletePage cocp;
 	@BeforeTest
 	@Parameters("browser")
 	public void launchbrowser(@Optional String browserName)
@@ -68,10 +75,43 @@ public class CartTest extends BaseClass {
 		
 		
 	}
+	@Test(priority = 6)
+	public void testProductsOnCheckoutOverviewPage()
+	{
+		Assert.assertTrue(coop.presenceOfSelectedProductsOnOverview(pp.getSelectedProductList()));
+	   	
+	}
+	@Test(priority = 7)
+	public void testBillingTotal()
+	{
+		Assert.assertEquals(coop.calculatedBill(), coop.visibleBill(),0.01,"Visible bill does not matches calculated bill");
+	}
+	
+	@Test(priority =8)
+	public void testGotoCheckoutCompletePage()
+	{
+		coop.finishCheckout();
+		cocp = new CheckoutCompletePage(driver);
+		Assert.assertTrue(cocp.onCheckoutCompletePage());
+		
+	}
+	
+	@Test(priority = 9)
+	public void testGotoHome()
+	{
+		cocp.goBackHome();
+		pp.testOnHomePage();
+		Assert.assertEquals(pp.getCartBadgeCount(),0);
+		System.out.println("Successfully back to home");
+		pp.logout();
+	}
+	
 	
 	
 	@AfterTest
 	public void quitBrowser() {
 		teardown();
 	}
+
+
 }

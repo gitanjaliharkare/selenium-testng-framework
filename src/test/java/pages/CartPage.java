@@ -16,6 +16,7 @@ public class CartPage {
 	By cpTitle = By.cssSelector(".title");
 	By productNames =By.cssSelector("div.inventory_item_name");
 	List<WebElement> productVisibleInCart;
+	By btnCheckout = By.id("checkout"); 
 	WebDriverWait wait;
 	
 	
@@ -34,8 +35,6 @@ public class CartPage {
 	
 	public boolean presenceOfSelectedProducts(List<String> productsAddedtoCart)
 	{
-	
-		//List<String> productsAddedtoCart=pp.getSelectedProductList();
 		boolean flag =true;
 		productVisibleInCart = driver.findElements(productNames);
 		List<String> txtProductVisibleInCart =new ArrayList<String>() ;
@@ -72,6 +71,10 @@ public class CartPage {
 		}
 		return flag;
 				
+	}
+	public void gotoCheckout()
+	{
+		driver.findElement(btnCheckout).click();
 	}
     	
 }

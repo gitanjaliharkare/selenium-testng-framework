@@ -42,11 +42,11 @@ public class LoginTest extends BaseClass {
 		lp.login(username, password);
 
 		if (expectedResult.equalsIgnoreCase("success")) {
-			Assert.assertTrue(pp.checkLoginSuccess());
+			Assert.assertTrue(pp.testOnHomePage());
 			pp.logout();
 		} else if (expectedResult.equalsIgnoreCase("Failure")) {
 			Assert.assertTrue(lp.checkErrorMessage());
-		//	Assert.assertTrue(false);
+		
 
 		}
 	}

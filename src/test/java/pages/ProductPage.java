@@ -49,7 +49,7 @@ public class ProductPage {
 		return numberOfProducts;
 	}
 
-	public boolean checkLoginSuccess() {
+	public boolean testOnHomePage() {
 		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(titleProduct));
 		if (title != null) {
 			return true;

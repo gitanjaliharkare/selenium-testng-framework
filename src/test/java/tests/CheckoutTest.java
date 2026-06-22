@@ -1,4 +1,6 @@
 package tests;
+import pages.*;
+
 import java.util.Map;
 
 import org.testng.Assert;
@@ -9,9 +11,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import base.BaseClass;
-import pages.*;
-
-public class CartTest extends BaseClass {
+public class CheckoutTest  extends BaseClass{
 	LoginPage lp;
 	ProductPage pp;
 	CartPage cp;
@@ -66,10 +66,12 @@ public class CartTest extends BaseClass {
 		Assert.assertTrue(coop.onCheckoutOverviewPage());
 		System.out.println("Successfully On Checkout Overview page");
 		
-		
+	}
+	public void testProductsOnOverviewPage() {
+		Assert.assertTrue(coop.presenceOfSelectedProductsOnOverview(pp.getSelectedProductList()));
 	}
 	
-	
+		
 	@AfterTest
 	public void quitBrowser() {
 		teardown();

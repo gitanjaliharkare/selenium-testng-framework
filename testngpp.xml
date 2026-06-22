@@ -5,8 +5,11 @@
 		<parameter name="browser" value="edge"/>
 		<parameter name="username" value="standard_user"/>
 		<parameter name="password" value="secret_sauce"/>
+		<parameter name="firstname" value="Gitanjali"/>
+		<parameter name="lastname" value="Harkare"/>
+		<parameter name="pincode" value="256348"/>
 		<classes>
-			<class name="tests.CartTest" />
+			<class name="tests.CheckoutCompleteTest" />
 		</classes>
 	</test><!-- Test -->
 </suite> <!-- Suite -->

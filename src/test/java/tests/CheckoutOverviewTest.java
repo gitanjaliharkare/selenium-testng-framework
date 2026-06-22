@@ -1,4 +1,5 @@
 package tests;
+
 import java.util.Map;
 
 import org.testng.Assert;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 import base.BaseClass;
 import pages.*;
 
-public class CartTest extends BaseClass {
+public class CheckoutOverviewTest extends BaseClass {
 	LoginPage lp;
 	ProductPage pp;
 	CartPage cp;
@@ -68,10 +69,22 @@ public class CartTest extends BaseClass {
 		
 		
 	}
+	@Test(priority = 6)
+	public void testProductsOnCheckoutOverviewPage()
+	{
+		Assert.assertTrue(coop.presenceOfSelectedProductsOnOverview(pp.getSelectedProductList()));
+	   	
+	}
+	@Test(priority = 7)
+	public void testBillingTotal()
+	{
+		Assert.assertEquals(coop.calculatedBill(), coop.visibleBill(),0.01,"Visible bill does not matches calculated bill");
+	}
 	
 	
 	@AfterTest
 	public void quitBrowser() {
 		teardown();
 	}
+
 }
